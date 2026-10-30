@@ -49,7 +49,7 @@ catch (error) {
   return (
     <Container maxWidth="sm" >
       <Box
-        sx={{ p: "40px", boxShadow: 2, borderRadius: 2 }}
+        sx={{p: { xs: 2, sm: 5} , boxShadow: 2, borderRadius: 2 }}
       >
         <Box
           sx={{
@@ -64,7 +64,7 @@ catch (error) {
           <Typography
             component={"h1"}
             variant="h4"
-            sx={{ textAlign: "center" ,fontWeight:'700'}}
+            sx={{ textAlign: "center" ,fontWeight:'700',}}
           >
             Create An Account
           </Typography>
@@ -135,7 +135,7 @@ catch (error) {
             type="submit"
             variant="contained"
             margin="normal"
-            sx={{ mt: 3 ,bgcolor: 'primary.main'}}
+            sx={{ mt: {xs:1,md:3} ,bgcolor: 'primary.main'}}
             disabled={isSubmitting}
             fullWidth
           >
@@ -145,7 +145,7 @@ catch (error) {
         <Box
           sx={{
             textAlign: "center",
-            py: 4,
+            py: {xs:2,md:4},
           }}
         >
           <Divider sx={{color:'text.primary'}}>OR</Divider>
@@ -155,7 +155,7 @@ catch (error) {
             display: "flex",
             flexDirection: "column",
             gap: 2,
-            p: 3,
+            py:{xs:1,md:3},
           }}
         >
           <Button
@@ -183,7 +183,7 @@ catch (error) {
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row",color:'text.primary',justifyContent: "center",gap:1,alignItems:'center'
 }}>
-          <Typography>Already Have An Account ?</Typography>
+          <Typography sx={{fontSize:{xs:14,md:16}}}>Already Have An Account ?</Typography>
           <Box sx={{color:'primary.main',}} > <Link to="/login"   style={{ textDecoration: "none", color: "#005E53" }}
 >Login</Link></Box>
          
