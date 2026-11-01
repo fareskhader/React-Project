@@ -5,7 +5,7 @@ const theme=createTheme({
   palette: {
     primary: { main: '#005E53' },
     text: { primary: '#3E4946' },
-    background: { paper: '#FFFFFF' },
+    background: { default: '#F6F3F2', paper: '#FFFFFF' },
     surface: { main: '#F6F3F2' },   
       PastelMintGreen: { main: '#ACEDDA' },   
 
@@ -35,7 +35,18 @@ const theme=createTheme({
     defaultProps: {
       underline: 'none',
     },
-  }}
+  },
+  MuiCssBaseline: {
+  styleOverrides: (theme) => ({
+    a: {
+      textDecoration: "none",
+      fontFamily: "inherit",
+      fontWeight: 500,
+      color: theme.palette.primary.main,
+    },
+  }),
+},
+}
 })
 
  export default theme

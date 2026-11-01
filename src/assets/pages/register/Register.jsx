@@ -16,6 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { registerSchema } from "../../../validations/authSchema";
 import { useState } from "react";
 import axios from "axios";
+import GreenIcon from "../../../components/GreenIcon";
 export default function Register() {
 
   const [serverError,setserverError]=useState(null)
@@ -47,7 +48,7 @@ catch (error) {
 
 
   return (
-    <Container maxWidth="sm" >
+    <Container maxWidth="sm"  >
       <Box
         sx={{p: { xs: 2, sm: 5} , boxShadow: 2, borderRadius: 2 }}
       >
@@ -58,9 +59,8 @@ catch (error) {
             marginBottom: "32px",
           }}
         >
-          <PersonAddAlt1
-            sx={{ p: 2, backgroundColor: "PastelMintGreen.main", borderRadius: 2 }}
-          />
+                       <GreenIcon icon={PersonAddAlt1}/>
+
           <Typography
             component={"h1"}
             variant="h4"

@@ -22,3 +22,9 @@ export const loginschema=yup.object({
     .matches(/[0-9]/,'password must contain a number'),
    
 })
+
+export const ResetPasswordschema=yup.object({
+    email:yup.string().required("email is required").email('Invalid Email Format'),
+ 
+   
+})

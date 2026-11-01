@@ -16,6 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { loginschema, registerSchema } from "../../../validations/authSchema";
 import { useState } from "react";
 import axios from "axios";
+import GreenIcon from '../../../components/GreenIcon';
 export default function Login() {
 
   const [serverError,setserverError]=useState(null)
@@ -47,6 +48,14 @@ catch (error) {
 
 
   return (
+    <Box
+  sx={{
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",      // توسيط عمودي
+    justifyContent: "center",  // توسيط أفقي
+  }}
+>
     <Container maxWidth="sm" >
       <Box
         sx={{p: { xs: 2, sm: 5} , boxShadow: 2, borderRadius: 2 }}
@@ -58,9 +67,7 @@ catch (error) {
             marginBottom: "32px",
           }}
         >
-          <ShoppingBagIcon
-            sx={{ p: 2, bgcolor: "primary.main", borderRadius: 2,color:'background.paper' }}
-          />
+          <GreenIcon icon={ShoppingBagIcon}/>
           <Typography
             component={"h1"}
             variant="h4"
@@ -161,5 +168,6 @@ catch (error) {
         </Box>
       </Box>
     </Container>
+    </Box>
   );
 }

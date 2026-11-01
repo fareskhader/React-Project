@@ -5,6 +5,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import Login from "./assets/pages/login/Login";
 import Register from "./assets/pages/register/Register";
 import ResetPassword from "./assets/pages/resetPassword/ResetPassword";
+import SetNewPassword from "./assets/pages/setNewpassword/SetNewPassword";
 
 const router=createBrowserRouter([
     {
@@ -31,7 +32,12 @@ const router=createBrowserRouter([
             {
                 path:'/resetPassword',
                 element:<ResetPassword/>
-            }
+            },
+            {
+                path:'/setNewPassword',
+                element:<SetNewPassword/>
+            },
+
         ]
     }
 ])
