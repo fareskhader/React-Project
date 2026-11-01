@@ -50,7 +50,7 @@ catch (error) {
   return (
     <Container maxWidth="sm"  >
       <Box
-        sx={{p: { xs: 2, sm: 5} , boxShadow: 2, borderRadius: 2 }}
+        sx={{p: { xs: 2, sm: 5} , boxShadow: 2, borderRadius: 2 ,bgcolor: "background.paper" }}
       >
         <Box
           sx={{
