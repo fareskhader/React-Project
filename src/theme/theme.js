@@ -44,6 +44,9 @@ const theme=createTheme({
       fontWeight: 500,
       color: theme.palette.primary.main,
     },
+     "input::-ms-reveal, input::-ms-clear": {
+      display: "none",
+    },
   }),
 },
 }

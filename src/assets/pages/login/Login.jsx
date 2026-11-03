@@ -1,9 +1,13 @@
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import googleLogo from "../../Icons/SVG.png";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import {
   TextField,
   Container,
   Box,
+    InputAdornment,
+ IconButton,
   Typography,
   Button,
   Divider,
@@ -21,6 +25,7 @@ export default function Login() {
 
   const [serverError,setserverError]=useState(null)
   const [success,setsuccess]=useState(null)
+   const [showPassword, setShowPassword] = useState(false);
 
  const {
     register,
@@ -34,7 +39,7 @@ export default function Login() {
 
   const onSubmit = async  (data)=>{
     console.log(data)
-
+    console.log("fares khader is back")
     try {
       const response=await axios.post('https://knowledgeshop.runasp.net/api/auth/Account/Login',data)
       setsuccess(true);
@@ -52,8 +57,8 @@ catch (error) {
   sx={{
     minHeight: "100vh",
     display: "flex",
-    alignItems: "center",      // توسيط عمودي
-    justifyContent: "center",  // توسيط أفقي
+    alignItems: "center",      
+    justifyContent: "center", 
   }}
 >
     <Container maxWidth="sm" >
@@ -104,7 +109,30 @@ catch (error) {
              {...register('password')}
              error={errors.password}
             helperText={errors.password?.message}
-            type='password'
+            type={showPassword ? "text" : "password"}
+             slotProps={{
+                  input: {
+                   
+                    endAdornment:(
+                      <InputAdornment position='end'>
+                        <IconButton
+                        type="button"
+                        onClick={()=>{
+                          setShowPassword(!showPassword)
+                        }
+                      }
+                      edge="end"
+                          >
+                             {showPassword ? (
+                          <VisibilityOffOutlinedIcon />
+                        ) : (
+                          <VisibilityOutlinedIcon />
+                        )}
+                          </IconButton>
+                      </InputAdornment>
+                    )
+                  },
+                }}
           />
          <Box sx={{color:'primary.main',display:'flex',justifyContent:'end'}} > <Link to="/resetPassword"   style={{ textDecoration: "none", color: "#005E53" }}
 >Forgot password?</Link></Box>

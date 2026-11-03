@@ -1,10 +1,12 @@
 
-import LockResetIcon from '@mui/icons-material/LockReset'
-import googleLogo from "../../Icons/SVG.png";
+
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import VpnKeyOutlinedIcon from "@mui/icons-material/VpnKeyOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import {
   TextField,
   Container,
@@ -13,41 +15,51 @@ import {
   Button,
   Alert,
   InputAdornment,
+  IconButton,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate,useLocation  } from "react-router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
-import { ResetPasswordschema} from "../../../validations/authSchema";
+import {  setNewPasswordSchema} from "../../../validations/authSchema";
 import { useState } from "react";
 import axios from "axios";
-import GreenIcon from '../../../components/GreenIcon';
 
 export default function SetNewPassword() {
 
   const [serverError,setserverError]=useState(null)
   const [success,setsuccess]=useState(null)
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
  const {
     register,
     handleSubmit,
     formState:{errors,isSubmitting},
   } =  useForm({
-    resolver: yupResolver(ResetPasswordschema),mode:'onBlur'
+    resolver: yupResolver(setNewPasswordSchema),mode:'onBlur'
   })
 
   const navigate =useNavigate();
-
+  const location=useLocation();
+  const email=location.state?.email
   const onSubmit = async  (data)=>{
     console.log(data)
-
+        console.log(data)
+        console.log("Email received:", email);
     try {
-      const response=await axios.post('https://knowledgeshop.runasp.net/api/auth/Account/SendCode',data)
-      setsuccess(true);
-      navigate('/setNewPassword')}
+      const response=await axios.patch('https://knowledgeshop.runasp.net/api/auth/Account/ResetPassword',{
+        code:data.code,
+        newPassword: data.newPassword,
+        email: email
+      })
+      if (response.data.success) {
+  navigate('/login');
+} else {
+  setserverError(response.data.message);
+}}
       
 catch (error) {
   console.log(error.response?.data)
-  setserverError(error.response?.data?.message || "Check Your Email Box")
+  setserverError(error.response?.data?.message )
 }
   }
 
@@ -79,8 +91,11 @@ catch (error) {
          
           <Typography
             component={"h1"}
-            variant="h4"
-            sx={{ textAlign: "center" ,fontWeight:'600'}}
+            variant={"h4"}
+            sx={{ textAlign: "center" ,fontWeight:'600',
+                  fontSize: { xs: "1.5rem", sm: "2.125rem" },
+
+            }}
           >
             Set New Password
           </Typography>
@@ -92,7 +107,7 @@ password.
    
              {serverError?<Alert>{serverError}</Alert>:null}
 
-        <Box sx={{bgcolor:"Background.Paper"}} component={"form"} onSubmit={handleSubmit(onSubmit)}>
+        <Box sx={{bgcolor:"Background.Paper",display:"flex",flexDirection:"column",gap:2}} component={"form"} onSubmit={handleSubmit(onSubmit)}>
          <Box>
   <Typography
     component="label"
@@ -104,7 +119,6 @@ Verification Code
   </Typography>
 
   <TextField
-    type='password'
     id="code"
        slotProps={{
       input: {
@@ -116,17 +130,119 @@ Verification Code
       },
     }}
     margin="none"
-    type="email"
     placeholder="6-DIGIT CODE"
-    {...register("email")}
-    error={!!errors.email}
-    helperText={errors.email?.message}
+    {...register("code")}
+    error={!!errors.code}
+    helperText={errors.code?.message}
  
     sx={{
     
 "& .MuiFilledInput-input": { py: 2 } }}
   />
 </Box>
+       <Box>
+  <Typography
+    component="label"
+    htmlFor="Newpassword"
+    variant="body2"
+    sx={{ display: "block", mb: 0.5, fontWeight: 500 }}
+  >
+New Password
+  </Typography>
+
+  <TextField
+    type={showPassword ? "text" : "password"}
+    id="Newpassword"
+       slotProps={{
+      input: {
+        startAdornment: (
+          <InputAdornment position="start" sx={{my:2}}>
+            <VpnKeyOutlinedIcon  />
+          </InputAdornment>
+        ),
+        endAdornment:(
+          <InputAdornment position='end'>
+            <IconButton
+                        type="button"
+
+            onClick={()=>{
+              setShowPassword(!showPassword)
+            }
+          }
+          edge="end"
+              >
+                 {showPassword ? (
+              <VisibilityOffOutlinedIcon />
+            ) : (
+              <VisibilityOutlinedIcon />
+            )}
+              </IconButton>
+          </InputAdornment>
+        )
+      },
+    }}
+
+    margin="none"
+    {...register("newPassword")}
+    error={!!errors.newPassword}
+    helperText={errors.newPassword?.newPassword}
+    sx={{
+    
+"& .MuiFilledInput-input": { py: 2 } }}
+  />
+</Box>
+        <Box>
+  <Typography
+    component="label"
+    htmlFor="Confirmpassword"
+    variant="body2"
+    sx={{ display: "block", mb: 0.5, fontWeight: 500 }}
+  >
+Confirm Password
+  </Typography>
+
+  <TextField
+    type={showConfirmPassword ? "text" : "password"}
+    id="confirmPassword"
+       slotProps={{
+      input: {
+        startAdornment: (
+          <InputAdornment position="start" sx={{my:2}}>
+            <LockOutlinedIcon  />
+          </InputAdornment>
+        ),
+        endAdornment:(
+          <InputAdornment position='end'>
+            <IconButton
+            type="button"
+            onClick={()=>{
+              setShowConfirmPassword(!showConfirmPassword)
+            }
+          }
+          edge="end"
+              >
+                 {showConfirmPassword ? (
+              <VisibilityOffOutlinedIcon />
+            ) : (
+              <VisibilityOutlinedIcon />
+            )}
+              </IconButton>
+          </InputAdornment>
+        )
+      },
+    }}
+
+    margin="none"
+    {...register("confirmPassword")}
+    error={!!errors.confirmPassword}
+    helperText={errors.confirmPassword?.message}
+ 
+    sx={{
+    
+"& .MuiFilledInput-input": { py: 2 } }}
+  />
+</Box>
+      
 
          
        
@@ -138,17 +254,17 @@ Verification Code
             disabled={isSubmitting}
             fullWidth
           >
-            {isSubmitting?"loading...":<Box sx={{display:'flex',justifyContent:'center',alignItems:'center',gap:"4px",py:1
+            {isSubmitting?"loading...":<Box sx={{display:'flex',justifyContent:'center',alignItems:'center',gap:"8px",py:1
             }}>
-              <Typography sx={{fontSize:"16px"}}>SEND CODE</Typography>
-                        <ArrowForwardIcon sx={{fontSize:'16px'}}/>
+              <Typography sx={{fontSize:"16px"}}>Reset Password</Typography>
+                        <CheckCircleRoundedIcon sx={{fontSize:'16px'}}/>
 
               </Box>}
           </Button>
         </Box>
        
         
-        <Box sx={{color:'primary.main',py:4}} >
+        <Box sx={{color:'primary.main',py:2}} >
          <Typography
   component={Link}
   to="/login"

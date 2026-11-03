@@ -34,7 +34,6 @@ export default function Register() {
 
   const onSubmit = async  (data)=>{
     console.log(data)
-
     try {
       const response=await axios.post('https://knowledgeshop.runasp.net/api/auth/Account/Register',data)
       setsuccess(true);

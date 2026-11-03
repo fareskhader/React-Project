@@ -28,3 +28,26 @@ export const ResetPasswordschema=yup.object({
  
    
 })
+
+export const setNewPasswordSchema = yup.object({
+  code: yup
+    .string()
+    .required("Verification code is required")
+    .matches(/^[0-9]{4}$/, "Code must be exactly 4 digits"),
+
+  newPassword: yup
+    .string()
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters")
+    .matches(/[A-Z]/, "Password must contain an uppercase letter")
+    .matches(/[a-z]/, "Password must contain a lowercase letter")
+    .matches(/[0-9]/, "Password must contain a number"),
+
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .oneOf(
+      [yup.ref("newPassword")],
+      "Passwords do not match"
+    ),
+});

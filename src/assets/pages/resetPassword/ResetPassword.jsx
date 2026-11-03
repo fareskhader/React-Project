@@ -37,11 +37,17 @@ export default function ResetPassword() {
 
   const onSubmit = async  (data)=>{
     console.log(data)
+    console.log("data have been submited")
 
     try {
       const response=await axios.post('https://knowledgeshop.runasp.net/api/auth/Account/SendCode',data)
-      setsuccess(true);
-      navigate('/setNewPassword')}
+     if (response.data.success) {
+  navigate('/setNewPassword', {
+    state: { email: data.email }
+  });
+} else {
+  setserverError(response.data.message);
+}}
       
 catch (error) {
   console.log(error.response?.data)
