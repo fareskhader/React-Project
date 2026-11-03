@@ -96,8 +96,11 @@ code
           </Typography>
         </Box>
    
-             {serverError?<Alert>{serverError}</Alert>:null}
-
+{serverError && (
+  <Alert severity="error" sx={{ mb: 2 ,borderRadius:2 }}>
+    {serverError}
+  </Alert>
+)}
         <Box sx={{bgcolor:"Background.Paper"}} component={"form"} onSubmit={handleSubmit(onSubmit)}>
           <Box>
   <Typography

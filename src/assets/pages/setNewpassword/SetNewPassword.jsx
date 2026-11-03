@@ -105,8 +105,11 @@ password.
           </Typography>
         </Box>
    
-             {serverError?<Alert>{serverError}</Alert>:null}
-
+{serverError && (
+  <Alert severity="error" sx={{ mb: 2 ,borderRadius:2}}>
+    {serverError}
+  </Alert>
+)}
         <Box sx={{bgcolor:"Background.Paper",display:"flex",flexDirection:"column",gap:2}} component={"form"} onSubmit={handleSubmit(onSubmit)}>
          <Box>
   <Typography
