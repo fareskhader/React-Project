@@ -7,7 +7,7 @@ const theme=createTheme({
     text: { primary: '#3E4946' },
     background: { default: '#F6F3F2', paper: '#FFFFFF' },
     surface: { main: '#F6F3F2' },   
-      PastelMintGreen: { main: '#ACEDDA' },   
+    PastelMintGreen: { main: '#ACEDDA' },   
 
   },
   components:

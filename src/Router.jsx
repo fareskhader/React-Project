@@ -6,7 +6,7 @@ import Login from "./assets/pages/login/Login";
 import Register from "./assets/pages/register/Register";
 import ResetPassword from "./assets/pages/resetPassword/ResetPassword";
 import SetNewPassword from "./assets/pages/setNewpassword/SetNewPassword";
-
+import ProductDetails from "./assets/pages/productDetails/ProductDetails"
 const router=createBrowserRouter([
     {
         path:'/',
@@ -15,6 +15,10 @@ const router=createBrowserRouter([
             {
             index:true,
             element:<Home/>
+            },
+            {
+                path:'/productDetails/:id',
+                element:<ProductDetails/>
             },
     ]
     },
