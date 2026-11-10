@@ -21,8 +21,9 @@ import { loginschema, registerSchema } from "../../../validations/authSchema";
 import { useState } from "react";
 import axios from "axios";
 import GreenIcon from '../../../components/GreenIcon';
+import { useAuthStore } from '../../../store/useAuthStore';
 export default function Login() {
-
+  const Login=useAuthStore((state)=>state.login)
   const [serverError,setserverError]=useState(null)
   const [success,setsuccess]=useState(null)
    const [showPassword, setShowPassword] = useState(false);
@@ -43,7 +44,11 @@ export default function Login() {
     try {
       const response=await axios.post('https://knowledgeshop.runasp.net/api/auth/Account/Login',data)
       setsuccess(true);
-      navigate('/')}
+      Login(response.data.accessToken)
+      navigate('/')
+     console.log(response.data);
+    }
+     
       
 catch (error) {
   console.log(error.response?.data)
