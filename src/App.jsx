@@ -2,6 +2,8 @@ import React from 'react'
 import { RouterProvider } from 'react-router'
 import { CssBaseline } from '@mui/material'
 import router from './Router'
+  import { ToastContainer,toast } from 'react-toastify';
+
 import {
 
   QueryClient,
@@ -19,6 +21,8 @@ export default function App() {
   <CssBaseline />
   
 <RouterProvider router={router}/>
+        <ToastContainer />
+
 
 
 </QueryClientProvider>

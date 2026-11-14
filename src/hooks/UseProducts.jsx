@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query' 
-
+import axiosInstance from '../api/axiosInstance';
  const getProducts = async()=>{
-        const response = await axios.get('https://knowledgeshop.runasp.net/api/Products',
-            {headers:{"Accept-Language":"en"}}
-        )
+
+    const response = await axiosInstance.get(`Products`);
+
         return response.data.response.data
     }
 

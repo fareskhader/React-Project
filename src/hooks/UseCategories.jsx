@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query' 
+import axiosInstance from '../api/axiosInstance';
  const getCategories = async()=>{
-        const response = await axios.get('https://knowledgeshop.runasp.net/api/Categories',
-            {headers:{"Accept-Language":"en"}}
-        )
+    
+               const response = await axiosInstance.get(`Categories`);
+
         return response.data.response.data
     }
 

@@ -18,15 +18,47 @@ import {
 } from "@mui/material";
 import MainLayout from '../../../layouts/MainLayout';
 import ReviewItem from '../../../components/ReviewItem'; 
-export default function ProductDetails() {
-
+import UseAddToCart from '../../../hooks/UseAddToCart';
+import { useAuthStore } from '../../../store/useAuthStore';
+import { useNavigate } from 'react-router'
+import { toast, Slide } from 'react-toastify';export default function ProductDetails() {
+    const token = useAuthStore((state)=>state.token)
     const {id} =useParams();
+    const {mutate:addToCart,isPending:addToCartPending} = UseAddToCart()
     const {data,isPending,isError} = UseProductDetails(id)
+    
+
+            const navigate = useNavigate();
+
+
       if(isPending) return <CircularProgress/>
       if(isError) return <Alert severity="error">faliled to load product</Alert>
-      console.log(data.reviews)
 
-      const inStock = data.quantity > 0;
+            const inStock = data.quantity > 0;
+
+    const handleAddToCart = ()=>{
+        if(!token){
+            navigate('/login');
+            return;
+        }
+        addToCart(data.id,{
+           onSuccess:()=>{
+toast.success('Added Successfully !', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+theme: "light",
+transition: Slide,
+});           } ,
+           onError:()=>{
+            console.log("error happened while adding")
+           }
+        })
+    }
+
   return (
     <>
     <Box sx={{display:'grid',gap:4,
@@ -66,7 +98,7 @@ export default function ProductDetails() {
                 </Typography>
                   <Rating value={data.rate} readOnly sx={{display:'flex'}}>
                 </Rating>
-                <Button variant="contained" disabled={!inStock}>Add To Cart</Button>
+                <Button variant="contained" disabled={!inStock || addToCartPending} onClick={handleAddToCart}>Add To Cart</Button>
           <Divider sx={{color:'primary.main',my:3,borderBottomWidth:2,borderColor:'primary.main'}}></Divider>
 
             </Box>
