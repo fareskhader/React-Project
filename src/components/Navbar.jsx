@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Link } from "react-router";
+import { Link, Links } from "react-router";
 import { useAuthStore } from "../store/useAuthStore";
 export default function Navbar() {
   const token = useAuthStore((state)=>state.token)
@@ -57,8 +57,12 @@ export default function Navbar() {
                 <Button component={Link} to="/register">
                   Register
                 </Button>
+                 
               </>
             )}
+            <Button component={Link} to="/cart">
+                  Cart
+                </Button>
           </Box>
         </Toolbar>
         <Box sx={{ flexGrow: 1 }}></Box>
