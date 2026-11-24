@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "cart": "السلة",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "register": "إنشاء حساب",
+    "switchLanguage": "English"
+  },
+  "home": {
+    "categories": "التصنيفات",
+    "products": "المنتجات",
+    "loadcategorieserror": "فشل تحميل التصنيفات",
+    "loadproductserror": "فشل تحميل المنتجات"
+  },
+  "products": {
+    "addtocart": "أضف إلى السلة",
+    "loadproductserror": "فشل تحميل المنتجات",
+    "adding...": "جارٍ الإضافة...",
+    "instock": "متوفر",
+    "outofstock": "غير متوفر",
+    "reviews": "التقييمات",
+    "noreviews": "لا توجد تقييمات بعد"
+  }
+}

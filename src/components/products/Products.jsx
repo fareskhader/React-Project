@@ -15,21 +15,23 @@ import {
 } from "@mui/material";
 import UseProducts from '../../hooks/UseProducts'
 import PrductItem from './PrductItem'
+import { useTranslation } from 'react-i18next';
 export default function Products() {
 
     const {data,isPending,isError}=UseProducts();
+    const {t} = useTranslation();
     
       if(isPending) return <CircularProgress/>
-      if(isError) return <Alert severity="error">faliled to load categories</Alert>
+      if(isError) return <Alert severity="error">{t('home.loadproductserror')}</Alert>
       console.log(data)
   return (
     <Box>
-            <Typography variant='h5' component={'h2'} sx={{mb:2}}>Produsts</Typography>
+            <Typography variant='h5' component={'h2'} sx={{mb:2}}>{t('home.products')}</Typography>
             <Box sx={{display:'grid',gridTemplateColumns:{
                 xs:'repeat(1,1fr)',
                 sm:'repeat(2,1fr)',
                 md:'repeat(4,1fr)'
-            },gap:2,bgcolor:"red"}}>
+            },gap:2}}>
     
             {data.map((product)=>(
                 <PrductItem product={product} />

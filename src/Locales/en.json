@@ -1,0 +1,28 @@
+{
+    "nav": {
+        "home": "Home",
+        "products": "Products",
+        "cart": "Cart",
+        "login": "Login",
+        "logout": "Logout",
+        "register": "Register",
+        "switchLanguage": "العربية"
+
+    },
+    "home": {
+        "categories": "Categories",
+        "products": "Products",
+        "loadcategorieserror": "Failed to load categories",
+        "loadproductserror": "Failed to load products"
+    },  
+    "products": {
+        "addtocart": "Add to Cart",
+        "loadproductserror": "Failed to load products",
+        "adding...": "Adding...",
+        "instock": "In Stock",
+        "outofstock": "Out of Stock",
+        "reviews": "Reviews",
+        "noreviews": "No reviews yet"
+    }
+
+}

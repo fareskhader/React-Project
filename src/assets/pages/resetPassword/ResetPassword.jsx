@@ -67,7 +67,7 @@ catch (error) {
     <Container maxWidth="sm" sx={{display:"flex",flexDirection:"column",justifyContent:'center',alignItems:"center",
     }} >
       <Box
-        sx={{p: { xs: 2, sm: 5} , boxShadow: 2, borderRadius: 2 }}
+        sx={{p: { xs: 2, sm: 5} , boxShadow: 2, borderRadius: 2,bgcolor:"background.paper" }}
       >
         <Box
           sx={{

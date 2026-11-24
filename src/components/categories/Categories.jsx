@@ -19,20 +19,22 @@ import {
 } from "@mui/material";
 import CategoryItem from './CategoryItem';
 import UseCategories from '../../hooks/UseCategories';
+import { useTranslation } from 'react-i18next';
 export default function Categories() {
     
     const {data,isLoading,isError}=UseCategories()
+    const {t} = useTranslation();
 
   if(isLoading) return <CircularProgress/>
-  if(isError) return <Alert severity="error">faliled to load categories</Alert>
+  if(isError) return <Alert severity="error">{t('home.loadcategorieserror')}</Alert>
     return (
     <Box>
-        <Typography variant='h5' component={'h2'} sx={{mb:2}}>Categories</Typography>
+        <Typography variant='h5' component={'h2'} sx={{mb:2}}>{t('home.categories')}</Typography>
         <Box sx={{display:'grid',gridTemplateColumns:{
             xs:'repeat(1,1fr)',
             sm:'repeat(2,1fr)',
             md:'repeat(4,1fr)'
-        },gap:2,bgcolor:"red"}}>
+        },gap:2}}>
 
         {data.map((category)=>(
             <CategoryItem category={category} />

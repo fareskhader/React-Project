@@ -133,7 +133,7 @@ Verification Code
       },
     }}
     margin="none"
-    placeholder="6-DIGIT CODE"
+    placeholder="4-DIGIT CODE"
     {...register("code")}
     error={!!errors.code}
     helperText={errors.code?.message}

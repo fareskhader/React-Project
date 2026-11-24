@@ -174,7 +174,7 @@ catch (error) {
         >
           <Button
             fullWidth
-            sx={{ color: "black" ,py:2 , bgcolor:'surface.main'}}
+            sx={{ color: "inherit" ,py:2 , bgcolor:'surface.main'}}
             startIcon={
               <Box
                 component="img"
@@ -189,7 +189,7 @@ catch (error) {
 
           <Button
             fullWidth
-            sx={{ color: "black" ,py:2,bgcolor:'surface.main'}}
+            sx={{ color: "inherit" ,py:2,bgcolor:'surface.main'}}
             startIcon={<AppleIcon sx={{ fontSize: 20 }} />}
           >
             Continue with Apple
