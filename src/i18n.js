@@ -2,8 +2,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import i18n from 'i18next';
 import { useTranslation, initReactI18next } from 'react-i18next';
-import en from './locales/en.json';
-import ar from './locales/ar.json';
+import en from './Locales/en.json';
+import ar from './Lar.json';
 import { UseLanguageStore } from './store/LanguageStore';
 i18n
   .use(initReactI18next) 
